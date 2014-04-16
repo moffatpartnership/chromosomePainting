@@ -39,7 +39,7 @@ The GSAP Greensock library is currently only used for the Ticker. The library us
 
 The two createjs libraries are used extensively.
 
-You can use the stats display for performance monitoring, uncomment the initial load and jquery lines in the GCViewer.loadInit function, then uncomment the start and stop lines in the frameRender function.
+You can use the stats display for performance monitoring, uncomment the initial load and jquery lines in the Viewer.loadInit function, then uncomment the start and stop lines in the frameRender function.
 
 #### CSS
 
@@ -47,9 +47,9 @@ There is a very simple CSS preloader within the #Processing styling with links t
 
 #### Javascript
 
-The javascript file haplogroupFrequencies.js has an anonymous executing function called HFViewer, this loads the assets on start-up and then when all is loaded the GSAP Ticker fires the frameRender function.
+The javascript file haplogroupFrequencies.js has an anonymous executing function called Viewer, this loads the assets on start-up and then when all is loaded the GSAP Ticker fires the frameRender function.
 
-There are three other anonymous functions handling the loading and the drawing.
+There are two other anonymous functions handling the loading and the drawing.
 
 #### Support
 

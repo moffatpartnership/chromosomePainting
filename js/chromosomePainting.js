@@ -254,93 +254,6 @@ window.Viewer = {};
 
 })();
 
-// dashboard
-(function(){
-
-    var user;
-
-    function Dashboard() {
-
-
-
-    }
-
-    Dashboard.prototype.controlData = function(data) {
-
-
-    };
-
-    Dashboard.prototype.background = function(displayObject) {
-
-        // area to add stuff ----->
-
-        // <------ area to add stuff
-    };
-
-    Dashboard.prototype.redraw = function() {
-
-
-    };
-
-    Dashboard.prototype.userFeedback = function() {
-
-
-    };
-
-    Viewer.Dashboard = Dashboard;
-
-})();
-
-// highlight
-(function(){
-
-    var interactionObject, viewInteraction, sliderX, chromoX, state, topPhase, botPhase, chromoEnd,
-    appmiddle = appWidth/ 2 - 65.5, coeff = 0, offset = 0, worldxpos = 500, sectionDescription = "";
-
-    function Highlight() {
-
-        interactionObject = {
-            state:"inactive",
-            data:"Nil"
-        };
-    }
-
-    Highlight.prototype.dataLoad = function(viewData) {
-
-        viewInteraction = viewData;
-    };
-
-    Highlight.prototype.background = function(displayObject) {
-
-
-    };
-
-    Highlight.prototype.redraw = function(displayObject) {
-
-
-
-    };
-
-    Highlight.prototype.eventlayer = function(displayObject) {
-
-
-
-    };
-
-    Highlight.prototype.currentState = function() {
-
-        return interactionObject
-    };
-
-    Highlight.prototype.resetInteraction = function(){
-
-        interactionObject.state = "inactive";
-        interactionObject.data = "Nil";
-    };
-
-    Viewer.Highlight = Highlight;
-
-})();
 
 // renderer
 (function(){
@@ -358,12 +271,6 @@ window.Viewer = {};
 
         // prepare the view
         view = new Viewer.Artboard(appWidth,appHeight);
-
-        // prepare the highlight
-        highlight = new Viewer.Highlight();
-
-        // prepare the dashboard
-        control = new Viewer.Dashboard();
 
         // loader init
         loader = new Viewer.Loader();
@@ -402,31 +309,6 @@ window.Viewer = {};
         artboard.addChild(artboardEventArea);
         view.eventlayer(artboardEventArea);
 
-        // dashboard
-        dashboardBackground = new createjs.Container();
-        dashboardBackground.cache(0, 0, appWidth, appHeight);
-        stage.addChild(dashboardBackground);
-        control.background(dashboardBackground);
-
-        dashboardRedraw  = new createjs.Container();
-        stage.addChild(dashboardRedraw);
-
-        // highlight
-        highlightContainer = new createjs.Container();
-        highlightContainer.y = 20;
-        stage.addChild(highlightContainer);
-
-        highlightBackground = new createjs.Container();
-        highlightBackground.cache(0, 0, appWidth, appHeight);
-        highlightContainer.addChild(highlightBackground);
-
-        highlightRedraw  = new createjs.Container();
-        stage.addChild(highlightRedraw);
-
-        highlightEventArea = new createjs.Container();
-        highlightEventArea.cache(0, 0, appWidth, appHeight);
-        highlightContainer.addChild(highlightEventArea);
-
         TweenMax.ticker.addEventListener("tick", frameRender);
 
     }
@@ -438,7 +320,6 @@ window.Viewer = {};
             loadStatus = true;
             var data = loader.returnData();
             view.dataLoad(data);
-            control.controlData(data);
             removeLoader()
         }
     }
@@ -455,32 +336,10 @@ window.Viewer = {};
         //stats.begin();
 
         artboardRedraw.removeAllChildren();
-        highlightRedraw.removeAllChildren();
 
         view.redraw(artboardRedraw);
-        highlight.redraw(highlightRedraw);
-        control.redraw(dashboardRedraw);
 
         var viewData = view.interaction();
-
-        if (viewData.state === "openhighlight") {
-            highlight.dataLoad(viewData);
-            highlight.eventlayer(highlightEventArea);
-            highlight.background(highlightBackground);
-            view.resetInteraction()
-        }
-
-        var highlightData = highlight.currentState();
-
-        if (highlightData.state === "closehighlight") {
-            highlightBackground.removeAllChildren();
-            highlightBackground.updateCache();
-
-            highlightEventArea.removeAllChildren();
-            highlightEventArea.updateCache();
-
-            highlight.resetInteraction()
-        }
 
         // update stage
         stage.update();
