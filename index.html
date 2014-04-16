@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+
+    <title>Chromosome Painting</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="block">
+
+    <div>
+
+        <p>Our DNA is packaged up into 23 large structures called chromosomes. The first 22 chromosomes, numbered from 1 to 22 and are called the autosomes. They come in pairs: one of each pair is inherited from our mother and one from our father – so they can inform us about our overall ancestry. This analysis has separated out the DNA you inherited from your parents using a statistical model (this is called phasing) and has then gone on to infer the ancestry of each chunk of your chromosomes (using another statistical model) – that is they have been “painted” according to their ancestry.</p>
+
+    </div>
+
+    <div id="canvasChromosomePainting" data-chromosome-painting-id="52a094c1939138472f000bcb">
+    </div>
+
+    <div>
+
+        <p>The graphic shows the two copies of each of your autosomes, coloured according to the inferred ancestry of each segment. In the present analysis there are three possible ancestries – West Eurasian (which includes European, West Asian and some South Asian ancestry), Sub-Saharan African and East Asian (includes Native American & North Asian). Many Europeans have entirely European ancestry so the entire length of each copy of each chromosome would appear West Eurasian. However if your father were Nigerian and your mother British, one copy of each chromosome would appear Sub-Saharan African and one would appear West Eurasian. More complex mixes appear as a series of segments of differing ancestry, showing the different blocks inherited from the different ancestors. Where there are too few markers in a region, ancestry cannot be inferred – these are represented in grey. There is a considerable amount of statistical noise in this analysis, so care should be taken with interpretation of small chunks of inferred minority ancestry; these may not be real.</p>
+
+    </div>
+
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.4.0.min.js"></script>
+<script src="js/stats.min.js"></script>
+<script src="js/chromosomePainting.js"></script>
+
+</body>
+</html>
