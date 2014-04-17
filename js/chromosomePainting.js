@@ -36,7 +36,7 @@ window.Viewer = {};
 
         function handleComplete() {
 
-            $.getJSON('https://api.moffpart.com/api/1/databases/sdnacontent/collections/amaChromosomePainting/' + resultid + '?apiKey=50e55b5fe4b00738efa04da0&callback=?', function(ret) {
+            $.getJSON('https://api.moffpart.com/api/1/results/getAMAResults/'+ resultid +'?c=amaChromosomePainting&callback=?', function(ret) {
 
                 mapItems = ret;
                 parseData();
